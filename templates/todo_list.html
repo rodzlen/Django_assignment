@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+    <h2>{{ request.user.username }}</h2>
+    <form action="{% url 'logout' %}" method="POST">
+{% csrf_token %}
+    <button>로그아웃</button>
+</form>
+{% else %}
+<a href="{% url 'login' %}">로그인</a>
+    <a href="{% url 'sign_up' %}">회원가입</a>
+
+{% endif %}
+{% for todo in todos %}
+<h1>{{ todo.id }}번째 할일</h1>
+    <a href="{% url 'todo_detail' todo.id %}"><h2>{{ todo.title }}</h2></a>
+
+
+{% endfor %}
+
+</body>
+</html>
