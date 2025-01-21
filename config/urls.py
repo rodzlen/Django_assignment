@@ -19,14 +19,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import users.views
+
 from todo_list import views
+from users import views as users_views
 
 urlpatterns = [
     path('admin/', admin.site.urls , name='admin'),
     path('todo/',views.todo_list, name='todo_list' ),
-    path('todo/<int:todo_id>/',views.todo_info, name='todo_detail'),
+    path('todo/<int:pk>/',views.todo_info, name='todo_detail'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('sign_up/' ,users.views.sign_up, name='sign_up')
+    path('todo/create/', views.todo_create, name='todo_create'),
+    path('todo/update/<int:pk>', views.todo_update, name='todo_update'),
+    path('todo/delete/<int:pk>', views.todo_delete, name='todo_delete'),
+
+    path('sign_up/', users_views.sign_up, name='sign_up'),
+    path('login/', users_views.login, name='login'),
 
 ]
