@@ -10,7 +10,7 @@
     {% csrf_token %}
     {{form.as_p}}
     <button>회원가입</button>
-    <a href="{% url 'todo_list' %}">돌아가기</a>
+    <a href="{% url 'todo:list' %}">돌아가기</a>
 </form>
 </body>
 </html>
